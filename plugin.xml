@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.jdt.core.IJavaProject"
+            id="CBSDetector.contribution1">
+         <menu
+               label="CBS Detector"
+               path="additions"
+               icon="icons/sample.gif"
+               id="CBSDetector.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Detect"
+               class="com.zhang.min.kelvin.CBSDetector.eclipseplugin.popup.actions.CBSDetectAction"
+               menubarPath="CBSDetector.menu1/group1"
+               enablesFor="1"
+               id="CBSDetector.newAction">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="CBSDetector"
+            name="CBS Detector">
+      </category>
+      <view
+            category="CBSDetector"
+            class="com.zhang.min.kelvin.CBSDetector.eclipseplugin.views.CBSDetectionResultView"
+            icon="icons/sample.gif"
+            id="com.zhang.min.kelvin.CBSDetector.eclipseplugin.views.CBSDetectionResultView"
+            name="CBS Detection Result">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="com.zhang.min.kelvin.CBSDetector.eclipseplugin.views.CBSDetectionResultView"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.TaskList">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="CBSDetector.commands.category"
+            name="CBS Detector">
+      </category>
+      <command
+            categoryId="CBSDetector.commands.category"
+            id="CBSDetector.commands.sampleCommand"
+            name="Detect External Project">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.zhang.min.kelvin.CBSDetector.eclipseplugin.handlers.DetectExternalHandler"
+            commandId="CBSDetector.commands.sampleCommand">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="CBSDetector.commands.sampleCommand"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+6">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="CBSDetector.menus.sampleMenu"
+               label="CBSDetector"
+               mnemonic="M">
+            <command
+                  commandId="CBSDetector.commands.sampleCommand"
+                  id="CBSDetector.menus.sampleCommand"
+                  icon="icons/sample.gif"
+                  mnemonic="S">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="CBSDetector.toolbars.sampleToolbar">
+            <command
+                  commandId="CBSDetector.commands.sampleCommand"
+                  icon="icons/sample.gif"
+                  id="CBSDetector.toolbars.sampleCommand"
+                  tooltip="Detect External Project">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+</plugin>
